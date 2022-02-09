@@ -1,0 +1,180 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-prenrtrdeprocess-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-prenrtrdeprocess-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+  # name: "{{ include "dwbs.fullname" . }}-management-ui"
+  # labels:
+    # app.kubernetes.io/name: "{{ include "dwbs.name" . }}-management-ui"
+    # {{- include "dwbs.labels" . | nindent 4 }}
+# data:
+  # PRODUCT_URL: "http://dwbs-native-rest-api:80/native-rest"
+  # AUTH0_DOMAIN: {{ .Values.sso_url  | quote }}
+  # AUTH0_SERVICE_PROVIDER_NAME: {{ .Values.sso_service_provider  | quote }}
+  # AUTH0_CLIENT_ID: {{ .Values.auth_client_id  | quote }}
+  # AUTH_REDIRECT_URL: "{{- if .Values.ingress.tls.enabled -}}https{{- else -}}http{{- end -}}://{{ .Values.ingress.host }}/dwbs-web-app"
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+  # name: "{{ include "dwbs.fullname" . }}-native-rest-api"
+  # labels:
+    # app.kubernetes.io/name: "{{ include "dwbs.name" . }}-native-rest-api"
+    # {{- include "dwbs.labels" . | nindent 4 }}
+# data:
+  # JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  # LOG_LEVEL: {{ .Values.log_level  | quote }}
+  # DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  # DB_USERNAME: {{ .Values.db_username  | quote }}
+  # DB_PASSWORD: {{ .Values.db_password  | quote }}
+# ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-pretapprocess-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-pretapprocess-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-nrtrdeout-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-nrtrdeout-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-nrtrdepin-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-nrtrdepin-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-rapin-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-rapin-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-rapout-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-rapout-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-tapin-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-tapin-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-core-ui"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-core-ui"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  config.json: |
+    {
+    "restApiURL": "http://dwbs-native-rest-api:80/native-rest/v1/",
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-tapout-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-tapout-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  LOG_LEVEL: {{ .Values.log_level  | quote }}
+  DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  DB_USERNAME: {{ .Values.db_username  | quote }}
+  DB_PASSWORD: {{ .Values.db_password  | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ include "dwbs.fullname" . }}-rating-service"
+  labels:
+    app.kubernetes.io/name: "{{ include "dwbs.name" . }}-rating-service"
+    {{- include "dwbs.labels" . | nindent 4 }}
+data:
+  mysql_host: {{ .Values.db_host  | quote }}
+  mysql_port: {{ .Values.db_port  | quote }}
+  mysql_db: {{ .Values.db_name  | quote }}
+  mysql_user: {{ .Values.db_username  | quote }}
+  mysql_password: {{ .Values.db_password  | quote }}
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+  # name: "{{ include "dwbs.fullname" . }}-notification-service"
+  # labels:
+    # app.kubernetes.io/name: "{{ include "dwbs.name" . }}-notification-service"
+    # {{- include "dwbs.labels" . | nindent 4 }}
+# data:
+  # JAVA_OPTS: {{ .Values.java_opts  | quote }}
+  # LOG_LEVEL: {{ .Values.log_level  | quote }}
+  # DB_URL: "jdbc:mysql://{{ .Values.db_host }}:{{ .Values.db_port }}/{{ .Values.db_name }}?"
+  # DB_USERNAME: {{ .Values.db_username  | quote }}
+  # DB_PASSWORD: {{ .Values.db_password  | quote }}

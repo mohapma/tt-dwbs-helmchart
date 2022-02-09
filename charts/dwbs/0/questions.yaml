@@ -1,0 +1,144 @@
+questions:
+  # Ingress
+  - variable: ingress.enabled
+    label: Enable Rest service Endpoint
+    type: boolean
+    default: false
+    required: true
+    group: Ingress
+    show_subquestion_if: true
+    subquestions:
+    - variable: ingress.host
+      label: Rest service Endpoint
+      description: User facing hostname of the system
+      type: string
+      default: dwbs.lab.dev-rancher.tecnotree.com
+      
+  - variable: ingress.tls.enabled
+    label: Enable TLS for Rest Service
+    type: boolean
+    default: false
+    required: true
+    group: Ingress
+    show_if: "ingress.enabled=true"
+  
+  - variable: ingress.tls.secret
+    label: TLS certificate secret name
+    type: string
+    show_if: "ingress.tls.enabled=true"
+    group: Ingress
+    
+  # Common Configuration
+  - variable: java_opts
+    label: JAVA_OPTS
+    description: Set JAVA_OPTS for all java application
+    type: string
+    default: -Xmx1024m -Xms512m
+    required: true
+    group: Common Configuration
+    
+  - variable: log_level
+    label: Application LOG LEVEL
+    description: Logging Level for springboot application
+    default: debug
+    required: true
+    type: enum
+    options:
+      - INFO
+      - ERROR
+      - WARN
+      - DEBUG
+      - FATAL
+      - TRACE
+    group: Common Configuration
+    
+  #Mysql DB Configuration
+  - variable: db_host
+    label: MYSQL_DB_HOST
+    description: MYSQL_DB_HOST
+    type: string
+    default: 192.168.20.226
+    required: true
+    group: Mysql DB Configuration
+  
+  - variable: db_port
+    label: MYSQL_DB_PORT
+    description: MYSQL_DB_PORT
+    type: number
+    default: 3306
+    required: true
+    group: Mysql DB Configuration
+
+  - variable: db_name
+    label: MYSQL_DB_NAME
+    description: MYSQL_DB_NAME
+    type: string
+    default: DWBS_DEV
+    required: true
+    group: Mysql DB Configuration
+    
+  # - variable: db_url
+    # label: MYSQL DB URL
+    # description: jdbc:mysql://<mysql_host>:<mysql_port>/<mysql_dbname>?
+    # type: string
+    # default: jdbc:mysql://192.168.20.226:3306/DWBS_DEV?
+    # required: true
+    # group: Mysql DB Configuration
+    
+  - variable: db_username
+    label: MYSQL_USER
+    description: MYSQL_USER
+    type: string
+    default: DWBS
+    required: true
+    group: Mysql DB Configuration
+    
+  - variable: db_password
+    label: MYSQL_PASSWORD
+    description: MYSQL_PASSWORD
+    type: password
+    default: Tecnotree@2021
+    required: true
+    group: Mysql DB Configuration
+    
+  #SSO Configuration
+  - variable: sso_url
+    label: SSO_URL
+    description: SSO Endpoint URL
+    type: string
+    default: https://sso2.tecnotree.com
+    required: true
+    group: Mysql DB Configuration
+    
+  - variable: sso_service_provider
+    label: SSO_SERVICE_PROVIDER
+    description: SSO_SERVICE_PROVIDER
+    type: string
+    default: DWBS-DEV
+    required: true
+    group: SSO Configuration
+    
+  - variable: auth_client_id
+    label: SSO_TOKEN_CLIENT_ID
+    description: SSO_TOKEN_CLIENT_ID
+    type: string
+    default: s0JYgi9R2uhHnQbdkyuCBQOULSoa
+    required: true
+    group: SSO Configuration
+    
+  #PVC Configuration
+  - variable: persistence.storageClass
+    label: STORAGECLASS
+    description: storageClass for PVC
+    type: storageclass
+    default: ""
+    required: true
+    group: PVC Configuration
+    
+  - variable: persistence.pvcSize
+    label: pvcSize
+    description: Volume size for PVC
+    type: string
+    default: 5Gi
+    required: true
+    group: PVC Configuration

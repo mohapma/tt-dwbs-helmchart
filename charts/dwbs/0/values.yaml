@@ -1,0 +1,313 @@
+# Default values for dwbs.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+registry:
+  #host: dev-docker-registry.tecnotree.com
+  host: registry.tecnotree.com
+ 
+###### Image details for micro service ################# 
+dwbs:
+  # native-rest-api:
+   # image:
+     # repository: digital-wbs/dwbs-native-rest-api
+     # tag: 5.1.3-beta.1-236-gbaa2f56
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: native-rest
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-native-rest-api
+   # resources: {}
+  # management-ui:
+   # image:
+     # repository: digital-wbs/dwbs-management-ui
+     # tag: 5.1.3-alpha.1-11-gaf2c6b9
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: dwbs-web-app
+   # ports:
+     # - name: http
+       # containerPort: 8080
+       # protocol: TCP
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-management-ui
+   # resources: {}
+  core-ui:
+   image:
+     repository: digital-wbs/dwbs-core-ui
+     tag: 5.2.1-beta.1
+     pullpolicy: IfNotPresent
+   replicaCount: 1
+   path: dwbs
+   ports:
+     - name: http
+       containerPort: 9009
+       protocol: TCP
+   volumeMounts:
+   - name: config-vol
+     mountPath: /usr/local/tomcat/webapps/dwbs/resources/config/config.json
+     subPath: config.json
+   volumes:
+   - name: config-vol
+     configMap:
+       name: dwbs-core-ui
+       defaultMode: 0666
+   resources: {}
+  # notification-service:
+   # image:
+     # repository: digital-wbs/dwbs-notification-service
+     # tag: 5.1.4-alpha.1-6-ga720d5a
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: notification-service
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-notification-service
+   # resources: {}
+# statefulset:
+  # tapin-service:
+   # image:
+     # repository: digital-wbs/dwbs-tapin-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path:
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # volumeMounts:
+   # - name: pvc-tapin-service
+     # mountPath: /data
+   # # persistence:
+     # # enabled: true
+     # # storageClass: ""
+     # # accessMode: ReadWriteOnce
+     # # pvcSize: 5Gi
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-tapin-service
+   # resources: {}
+  # rapout-service:
+   # image:
+     # repository: digital-wbs/dwbs-rapout-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: rapout-service
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # volumeMounts:
+   # - name: pvc-rapout-service
+     # mountPath: /data
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-rapout-service
+   # resources: {}
+  # nrtrdepin-service:
+   # image:
+     # repository: digital-wbs/dwbs-nrtrdein-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: nrtrdein-service
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # volumeMounts:
+   # - name: pvc-nrtrdepin-service
+     # mountPath: /data
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-nrtrdepin-service
+   # resources: {}
+  # tapout-service:
+   # image:
+     # repository: digital-wbs/dwbs-tapout-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: tapout-service
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # volumeMounts:
+   # - name: pvc-tapout-service
+     # mountPath: /data
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-tapout-service
+   # resources: {}
+  # rating-service:
+   # image:
+     # repository: digital-wbs/dwbs-rating-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path:
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # volumeMounts:
+   # - name: pvc-rating-service
+     # mountPath: /data
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-rating-service
+   # resources: {}
+  # pretapprocess-service:
+   # image:
+     # repository: digital-wbs/dwbs-pretapprocess-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: pretap-process
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-pretapprocess-service
+   # resources: {}
+  # rapin-service:
+   # image:
+     # repository: digital-wbs/dwbs-rapin-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path:
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-rapin-service
+   # resources: {}
+  # prenrtrdeprocess-service:
+   # image:
+     # repository: digital-wbs/dwbs-prenrtrdeprocess-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: prenrtrde-process
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-prenrtrdeprocess-service
+   # resources: {}
+  # nrtrdeout-service:
+   # image:
+     # repository: digital-wbs/dwbs-nrtrdeout-service
+     # tag: 5.2.1-beta.1
+     # pullpolicy: IfNotPresent
+   # replicaCount: 1
+   # path: nrtrdeout-service
+   # ports:
+     # - name: http
+       # containerPort: 8090
+       # protocol: TCP
+   # envFrom:
+   # - configMapRef:
+       # name: dwbs-nrtrdeout-service
+   # resources: {}
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+annotations:
+  #checksum/configmap: {{ include (print .Template.BasePath "/configmap.yaml") $ | sha256sum | quote }}
+
+podSecurityContext:
+  fsGroup: 860
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+###### Commmon ingress details for micro service ################# 
+ingress:
+  enabled: true
+  annotations: {}
+  host: dwbs.lab.dev-rancher.tecnotree.com
+  path: /
+  tls:
+    enabled: true
+    secret: ""
+persistence:
+ enabled: true
+ storageClass: ""
+ accessMode: ReadWriteOnce
+ pvcSize: 5Gi
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+#Env variables
+java_opts: Xmx1024m -Xms512m
+log_level: debug
+#db_url: jdbc:mysql://192.168.20.226:3306/DWBS_DEV?
+db_host: 192.168.20.226
+db_port: 3306
+db_name: DWBS_DEV
+db_username: DWBS
+db_password: Tecnotree@2021
